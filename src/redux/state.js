@@ -1,6 +1,7 @@
 /**
  * Created by andrejkomolov on 5/17/20.
  */
+import {rerenderEntireTree} from './../render';
 
 let state = {
 
@@ -42,6 +43,19 @@ let state = {
         ]
     }
 
+}
+
+
+export let addPost = (postMessage) => {
+
+    let newPost = {
+        id: 1,
+        message: postMessage,
+        likes: 0
+    };
+
+    state.profilePage.posts.push(newPost);
+    rerenderEntireTree(state);
 }
 
 export default state;

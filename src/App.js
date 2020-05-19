@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import {BrowserRouter, Route} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import Header from './components/Header/Header';
 import Navbar from './components/Navbar/Navbar';
 import Profile from './components/Profile/Profile';
@@ -14,25 +14,25 @@ import Friends from './components/Friends/Friends';
 const App = (props) => {
 
     return (
-        <BrowserRouter>
-            <div className='app-wrapper'>
-                <Header />
-                <Navbar state={props.state.sidebar.friends}/>
-                <div className='app-wrapper-content'>
-                    <Route path='/dialogs'
-                           render={ () => <Dialogs
-                               state={props.state.dialogsPage}/> }/>
-                    <Route path='/profile'
-                           render={ () => <Profile
-                               state={props.state.profilePage}/> }/>
-                    <Route path='/news' render={ () => <News /> }/>
-                    <Route path='/music' render={ () => <Music /> }/>
-                    <Route path='/settings' render={ () => <Settings /> }/>
-                    <Route path='/friends' render={ () => <Friends state={props.state.sidebar.friends}/> }/>
-                </div>
-            </div>
 
-        </BrowserRouter>
+        <div className='app-wrapper'>
+            <Header />
+            <Navbar state={props.state.sidebar.friends}/>
+            <div className='app-wrapper-content'>
+                <Route path='/dialogs'
+                       render={ () => <Dialogs
+                           state={props.state.dialogsPage}/> }/>
+                <Route path='/profile'
+                       render={ () => <Profile state={props.state.profilePage}
+                                               addPost={props.addPost}/> }/>
+                <Route path='/news' render={ () => <News /> }/>
+                <Route path='/music' render={ () => <Music /> }/>
+                <Route path='/settings' render={ () => <Settings /> }/>
+                <Route path='/friends' render={ () => <Friends state={props.state.sidebar.friends}/> }/>
+            </div>
+        </div>
+
+
     )
 }
 

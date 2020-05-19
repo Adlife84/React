@@ -1,12 +1,18 @@
 .friendItem {
-
+    display: flex;
 }
 
-.friendItem img {
+
+
+.item img {
 
     width: 60px;
     height: 60px;
     margin-right: 10px;
     border-radius: 30px;
 
+}
+
+.item a {
+    display: block;
 }

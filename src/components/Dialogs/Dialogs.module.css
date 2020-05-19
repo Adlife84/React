@@ -12,8 +12,8 @@
 }
 
 .dialog {
-    display: flex;
-    align-items: center;
+
+
 
 }
 
@@ -44,4 +44,9 @@
     text-align: center;
     margin-bottom: 20px;
     padding: 10px;
+}
+
+.addPost {
+    display: flex;
+    flex-direction: column;
 }
