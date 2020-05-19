@@ -19,20 +19,25 @@ const Answer = (props) => {
     return <div className={s.answer}>{props.answer}</div>
 }
 
+
+
 const Dialogs = (props) => {
 
 
-    let dialogsElements = props.state.dialogs.map(name => <DialogItem name={name.name} id={name.id}/>);
+    let dialogsElements = props.dialogsPage.dialogs.map(name => <DialogItem name={name.name} id={name.id}/>);
 
-    let messages = props.state.messages.map(message => <Message message={message.message} id={message.id}/>);
+    let messages = props.dialogsPage.messages.map(message => <Message message={message.message} id={message.id}/>);
 
-    let answers = props.state.answers.map(answer => <Answer answer={answer.answer} id={answer.id}/>);
+    let answers = props.dialogsPage.answers.map(answer => <Answer answer={answer.answer} id={answer.id}/>);
 
     let newPostElement = React.createRef();
 
-    let addPost = () => {
+    console.log(props.dialogsPage);
+
+
+    let onMessageChange = () => {
         let text = newPostElement.current.value;
-        alert(text);
+        props.updateNewMessageText(text);
     }
 
     return (
@@ -53,8 +58,11 @@ const Dialogs = (props) => {
                 {answers}
 
                 <div className={s.addPost}>
-                    <textarea ref={newPostElement}></textarea>
-                    <button onClick={addPost}>Add Post</button>
+
+                    <textarea onChange={onMessageChange} ref={newPostElement} value={props.dialogsPage.newMessageText}/>
+
+                    <button onClick={props.addMessage}>Add Message</button>
+
                 </div>
 
             </div>

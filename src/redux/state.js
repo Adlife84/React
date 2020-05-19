@@ -12,6 +12,7 @@ let state = {
             {id: 3, message: 'Awesome! Are you?', likes: 8},
             {id: 4, message: 'Is anybody here?', likes: 25}
         ],
+        newPostText: ''
     },
 
     dialogsPage: {
@@ -32,7 +33,8 @@ let state = {
         answers: [
             {id: 1, answer: 'I am fine! Are you?'},
             {id: 2, answer: 'It is going good'}
-        ]
+        ],
+        newMessageText: 'TestMessage from Stage'
     },
 
     sidebar: {
@@ -46,15 +48,45 @@ let state = {
 }
 
 
-export let addPost = (postMessage) => {
+export let addPost = () => {
 
     let newPost = {
         id: 1,
-        message: postMessage,
+        message: state.profilePage.newPostText,
         likes: 0
     };
 
     state.profilePage.posts.push(newPost);
+    state.profilePage.newPostText = '';
+
+    rerenderEntireTree(state);
+
+}
+
+export let updateNewPostText = (newText) => {
+    state.profilePage.newPostText = newText;
+    rerenderEntireTree(state);
+}
+
+
+// function that add messages in Dialogs page /dialog
+export let addMessage = () => {
+
+    let newMessage = {
+        id: 1,
+        answer: state.dialogsPage.newMessageText,
+    };
+
+    state.dialogsPage.answers.push(newMessage); //Add new element in array
+
+    state.dialogsPage.newMessageText = ''; //Reset value after add in array
+
+    rerenderEntireTree(state); //rerender all page
+
+}
+
+export let updateNewMessageText = (newMessage) => {
+    state.dialogsPage.newMessageText = newMessage;
     rerenderEntireTree(state);
 }
 
