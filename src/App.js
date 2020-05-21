@@ -12,12 +12,12 @@ import Friends from './components/Friends/Friends';
 
 
 const App = (props) => {
-
+    console.log(props.state);
     return (
 
         <div className='app-wrapper'>
             <Header />
-            <Navbar state={props.state.sidebar.friends}/>
+            <Navbar state={props.store}/>
             <div className='app-wrapper-content'>
 
                 <Route path='/dialogs'
