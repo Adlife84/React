@@ -106,7 +106,7 @@
 
 
 
-let rerenderEntireTree = () => {
+let _callSubscriber = () => {
     console.log('State was change!');
 }
 
@@ -183,13 +183,13 @@ let store = {
         this._state.profilePage.posts.push(newPost);
         this._state.profilePage.newPostText = '';
 
-        rerenderEntireTree(this._state);
+        this._callSubscriber(this._state);
 
     },
 
     updateNewPostText(newText) {
         this._state.profilePage.newPostText = newText;
-        rerenderEntireTree(this._state);
+        this._callSubscriber(this._state);
     },
 
     addMessage() {
@@ -203,17 +203,17 @@ let store = {
 
         this._state.dialogsPage.newMessageText = ''; //Reset value after add in array
 
-        rerenderEntireTree(this._state); //rerender all page
+        this._callSubscriber(this._state); //rerender all page
 
     },
 
     updateNewMessageText(newMessage) {
         this._state.dialogsPage.newMessageText = newMessage;
-        rerenderEntireTree(this._state);
+        this._callSubscriber(this._state);
     },
 
     subscribe(observer) {
-        rerenderEntireTree = observer;
+        this._callSubscriber = observer;
     }
 
 }
