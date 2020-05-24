@@ -1,6 +1,9 @@
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 
+const ADD_MESSAGE = 'ADD-MESSAGE';
+const UPDATE_NEW_MESSAGE_TEXT = 'UPDATE-NEW-MESSAGE-TEXT';
+
 let store = {
 
     //Privat use
@@ -36,7 +39,7 @@ let store = {
                 {id: 1, answer: 'I am fine! Are you?'},
                 {id: 2, answer: 'It is going good'}
             ],
-            newMessageText: 'TestMessage from Stage'
+            newMessageText: ''
         },
 
         sidebar: {
@@ -128,13 +131,14 @@ let store = {
             this._state.profilePage.posts.push(newPost);
             this._state.profilePage.newPostText = '';
 
+
             this._callSubscriber(this._state); //updateNewPostText
 
         } else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._state.profilePage.newPostText = action.newText;
             this._callSubscriber(this._state);
 
-        } else if (action.type === "ADD-MESSAGE"){
+        } else if (action.type === ADD_MESSAGE){
             let newMessage = {
                 id: 1,
                 answer: this._state.dialogsPage.newMessageText,
@@ -146,7 +150,7 @@ let store = {
 
             this._callSubscriber(this._state); //rerender all page
 
-        } else if (action.type === "UPDATE-NEW-MESSAGE-TEXT"){
+        } else if (action.type === UPDATE_NEW_MESSAGE_TEXT){
             this._state.dialogsPage.newMessageText = action.newMessage;
             this._callSubscriber(this._state);
 
@@ -162,8 +166,10 @@ export const addPostActionCreator = () => ({type: ADD_POST})
 export const updateNewPostTextActionCreator = (text) =>
     ({type: UPDATE_NEW_POST_TEXT, newText: text})
 
+export const addMessageActionCreator = () => ({type: ADD_MESSAGE})
 
-
+export const updateNewMessageTextActionCreator = (text) =>
+    ({type: UPDATE_NEW_MESSAGE_TEXT, newMessage: text})
 
 export default store;
 
